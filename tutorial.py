@@ -7,7 +7,7 @@ from os.path import isfile, join
 
 pygame.init()
 
-pygame.display.set_caption("Niggers")
+pygame.display.set_caption("Ninja Frog")
 
 WIDTH, HEIGHT = 1000, 800
 
@@ -15,6 +15,16 @@ FPS = 60
 PLAYER_VELO = 5
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
+game_state = "start_menu"
+
+"""def draw_start_menu():
+    window.fill((0, 0, 0))
+    font = pygame.font.SysFont('arial', 40)
+    title = font.render('My Game', True, (255, 255, 255))
+    start_button = font.render('Start', True, (255, 255, 255))
+    window.blit(title, (WIDTH/2 - title.get_width()/2, HEIGHT/2 - title.get_height()/2))
+    window.blit(start_button, (WIDTH/2 - start_button.get_width()/2, HEIGHT/2 + start_button.get_height()/2))
+    pygame.display.update()"""
 
 def flip(sprites):
     return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
@@ -76,8 +86,6 @@ class Player(pygame.sprite.Sprite):
         self.jump_count += 1
         if self.jump_count == 1:
             self.fall_count = 0
-        
-
 
     def move(self, dx, dy):
         self.rect.x += dx    
@@ -292,6 +300,12 @@ def main(window):
             if event.type == pygame.QUIT:
                 run = False
                 break
+
+            """if game_state == "start_menu":
+                draw_start_menu()
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_ESCAPE]:
+                    game_state = "game"""
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and player.jump_count < 2:
